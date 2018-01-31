@@ -18,12 +18,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.error).setOnClickListener(this);
         findViewById(R.id.loading).setOnClickListener(this);
         findViewById(R.id.content).setOnClickListener(this);
-        multipleStatusLayout =
-                new MultipleStatusLayout(this).include(R.id.refreshLayout)
-                        .setEmptyView(R.layout.empty)
-                        .setLoadingView(R.layout.loading)
-                        .setErrorView(R.layout.error)
-                        .showLoading();
+        multipleStatusLayout = new MultipleStatusLayout(this).include(R.id.refreshLayout)
+                .setEmptyView(R.layout.empty)
+                .setLoadingView(R.layout.loading)
+                .setErrorView(R.layout.error)
+                .showLoading();
     }
 
     @Override

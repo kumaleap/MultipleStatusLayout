@@ -6,13 +6,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 /**
  * Created by wulijie on 2018/1/31.
  * 多状态布局容器-用于管理多状态页面
  */
-public class MultipleStatusLayout extends FrameLayout {
+public class MultipleStatusLayout extends RelativeLayout {
 
     /* 未知状态 **/
     private static final int VIEW_STATE_UNKNOWN = -1;
@@ -38,11 +38,6 @@ public class MultipleStatusLayout extends FrameLayout {
     private Context context;
 
     private int mViewState = VIEW_STATE_UNKNOWN;
-
-    private FrameLayout.LayoutParams defaultLayoutParams =
-            new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT);
-
 
     public MultipleStatusLayout(Context context) {
         this(context, null);
