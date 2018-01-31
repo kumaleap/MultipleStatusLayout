@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.warpdrive.multiplestatuslayout.demo"
+        applicationId "com.warpdrive.demo"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
@@ -26,7 +26,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
     implementation project(':library')
-    implementation ('com.airbnb.android:lottie:2.5.0-beta3'){
+    implementation('com.airbnb.android:lottie:2.5.0-beta3') {
         exclude group: 'com.android.support'
     }
 }

@@ -15,4 +15,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
+
+
+ext {
+    bintrayRepo = 'maven'////bintray上的仓库名，我给的是maven，你自己可以随意给
+    bintrayName = 'MultipleStatusLayout'//bintray 你创建的new Package的名字
+
+    libraryName = 'library'//你开源库的名字
+    libraryVersion = '1.0.1'//开源库的版本
+    libraryDescription = '多状态页面管理Layout'//开源库的描述
+
+    publishedGroupId = 'com.warpdrive.multiplestatuslayout'//这个发布的id 我一般给包名
+    artifact = 'MultipleStatusLayout'//这个实际项目名，我一般给项目的小写名字
+    //上面两个名字决定了  你的compile库怎么写 例如：我这个是  compile 'com.warpdrive.pshelper:PageStateHelper:1.0'
+
+    siteUrl = 'https://github.com/wulijie/MultipleStatusLayout'//你的库在github上的地址
+    gitUrl = 'https://github.com/wulijie/MultipleStatusLayout.git' //你的库在github上的地址
+
+    //开发者信息
+    developerId = 'wulijie'
+    developerName = 'wulijie'
+    developerEmail = 'cocos2dx@126.com'
+
+    //开源协议
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = 'Apache-2.0'
+}
+
+
+apply from: 'https://raw.githubusercontent.com/wulijie/JCenter/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/wulijie/JCenter/master/bintray.gradle'

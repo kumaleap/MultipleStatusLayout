@@ -1,4 +1,4 @@
-package com.warpdrive.multiplestatuslayout.demo;
+package com.warpdrive.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
