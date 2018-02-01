@@ -26,10 +26,7 @@ multipleStatusLayout.showLoading();//显示loading页面
 ```
 
 # 效果图
-![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_1.png)
-![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_2.png)
-![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_3.png)
-![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_4.png)
+![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/demo.gift)
 
 
 
