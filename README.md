@@ -9,7 +9,7 @@
 ```sh
 compile 'com.warpdrive.multiplestatuslayout:library:{latestVersion}'
 ```
-[ ![Download](https://api.bintray.com/packages/wulijie/maven/MultipleStatusLayout/images/download.svg) ](https://bintray.com/wulijie/maven/MultipleStatusLayout/_latestVersion)[![API](https://img.shields.io/badge/API-8%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=8) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/wulijie/MultipleStatusLayout.svg?style=plastic&label=Star) ](https://github.com/WVector/AppUpdate)
+[ ![Download](https://api.bintray.com/packages/wulijie/maven/MultipleStatusLayout/images/download.svg) ](https://bintray.com/wulijie/maven/MultipleStatusLayout/_latestVersion)[![API](https://img.shields.io/badge/API-8%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=8) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/wulijie/MultipleStatusLayout.svg?style=plastic&label=Star) ](https://github.com/wulijie/MultipleStatusLayout)
 # 使用
 
 ```java
@@ -27,6 +27,9 @@ multipleStatusLayout.showLoading();//显示loading页面
 ```
 
 # 效果图
+
+[点击下载 Demo.apk](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/app-debug.apk)
+
 <img src="https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/demo.gif" width="300">
 
 
