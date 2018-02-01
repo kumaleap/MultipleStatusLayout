@@ -27,7 +27,6 @@ multipleStatusLayout.showLoading();//显示loading页面
 ```
 
 # 效果图
-[点击下载 Demo.apk](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/apk/app-debug.apk)
 
 <img src="https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/demo.gif" width="300">
 
