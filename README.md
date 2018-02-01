@@ -1,6 +1,6 @@
 # MultipleStatusLayout
 
-[ ![Download](https://api.bintray.com/packages/wulijie/maven/MultipleStatusLayout/images/download.svg) ](https://bintray.com/curzibn/maven/Luban/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/wulijie/maven/MultipleStatusLayout/images/download.svg) ](https://bintray.com/wulijie/maven/MultipleStatusLayout/_latestVersion)
 
 `MultipleStatusLayout` —多状态布局-处理页面多种状态的切换
 
@@ -9,7 +9,7 @@
 # 导入
 
 ```sh
-compile 'com.warpdrive.multiplestatuslayout:library:1.0'
+compile 'com.warpdrive.multiplestatuslayout:library:{latestVersion}'
 ```
 # 使用
 
@@ -29,7 +29,7 @@ multipleStatusLayout.showLoading();//显示loading页面
 
 # License
 
-    Copyright 2016 wulijie    
+    Copyright 2016 wuliji    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
