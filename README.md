@@ -4,8 +4,6 @@
 
 `MultipleStatusLayout` —多状态布局-处理页面多种状态的切换
 
-# 效果图
-
 # 导入
 
 ```sh
@@ -26,6 +24,14 @@ multipleStatusLayout.showError();//显示错误页面
 multipleStatusLayout.showLoading();//显示loading页面
 
 ```
+
+# 效果图
+![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_1.png)
+![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_2.png)
+![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_3.png)
+![image1](https://raw.githubusercontent.com/wulijie/MultipleStatusLayout/master/Screenshots/Screenshot_4.png)
+
+
 
 # License
 
