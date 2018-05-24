@@ -147,7 +147,6 @@ public class MultipleStatusLayout {
          * 构造
          *
          * @param context 上下文- activity
-         * @return Builder
          */
         public Builder(Context context) {
             this.context = context;
@@ -224,7 +223,7 @@ public class MultipleStatusLayout {
         /**
          * 指定要包裹的正文布局
          *
-         * @param contentView
+         * @param contentView contentView
          * @return Builder
          */
         public Builder include(View contentView) {

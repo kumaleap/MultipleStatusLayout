@@ -13,11 +13,13 @@ compile 'com.warpdrive.multiplestatuslayout:library:{latestVersion}'
 # 使用
 
 ```java
-new MultipleStatusLayout(this).include(R.id.refreshLayout)
-                .setEmptyView(R.layout.empty)
-                .setLoadingView(R.layout.loading)
-                .setErrorView(R.layout.error)
-                .showLoading();
+multipleStatusLayout =
+                new MultipleStatusLayout.Builder(this)
+                        .include(R.id.refreshLayout)
+                        .setEmptyView(R.layout.empty)
+                        .setLoadingView(R.layout.loading)
+                        .setErrorView(R.layout.error)
+                        .build();
 //show
 multipleStatusLayout.showEmpty();//显示空白页面
 multipleStatusLayout.showContent();//显示正文

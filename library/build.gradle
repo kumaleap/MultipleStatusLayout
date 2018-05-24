@@ -24,7 +24,7 @@ ext {
     bintrayName = 'MultipleStatusLayout'//bintray 你创建的new Package的名字
 
     libraryName = 'library'//你开源库的名字
-    libraryVersion = '1.0'//开源库的版本
+    libraryVersion = '1.1'//开源库的版本
     libraryDescription = '多状态页面管理Layout'//开源库的描述
 
     publishedGroupId = 'com.warpdrive.multiplestatuslayout'//这个发布的id 我一般给包名
