@@ -2,17 +2,16 @@ package com.warpdrive.multiplestatuslayout;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 /**
  * Created by wulijie on 2018/1/31.
  * 多状态布局容器-用于管理多状态页面
  */
-public class MultipleStatusLayout extends RelativeLayout {
+public class MultipleStatusLayout {
 
     /* 未知状态 **/
     private static final int VIEW_STATE_UNKNOWN = -1;
@@ -24,127 +23,22 @@ public class MultipleStatusLayout extends RelativeLayout {
     private static final int VIEW_STATE_EMPTY = 2;
     /* loading状态 **/
     private static final int VIEW_STATE_LOADING = 3;
-
-    private LayoutInflater mInflater;
-
-    private View mContentView;
-
-    private View mLoadingView;
-
-    private View mErrorView;
-
-    private View mEmptyView;
-
-    private Context context;
-
     private int mViewState = VIEW_STATE_UNKNOWN;
 
-    public MultipleStatusLayout(Context context) {
-        this(context, null);
+    private View mContentView;
+    private View mLoadingView;
+    private View mErrorView;
+    private View mEmptyView;
+    private ViewGroup container;
+
+    private MultipleStatusLayout(Builder builder) {
+        this.mContentView = builder.mContentView;
+        this.mLoadingView = builder.mLoadingView;
+        this.mErrorView = builder.mErrorView;
+        this.mEmptyView = builder.mEmptyView;
+        this.container = builder.container;
     }
 
-
-    public MultipleStatusLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        mInflater = LayoutInflater.from(getContext());
-    }
-
-    public MultipleStatusLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        this.context = context;
-        mInflater = LayoutInflater.from(getContext());
-    }
-
-    /**
-     * 指定loading布局
-     *
-     * @param loadingView loadingView
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setLoadingView(View loadingView) {
-        this.mLoadingView = loadingView;
-        return this;
-    }
-
-    /**
-     * 指定loading布局
-     *
-     * @param loadingViewResId loadingViewResId
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setLoadingView(int loadingViewResId) {
-        setLoadingView(mInflater.inflate(loadingViewResId, this, false));
-        return this;
-    }
-
-    /**
-     * 指定空白布局
-     *
-     * @param emptyView emptyView
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setEmptyView(View emptyView) {
-        this.mEmptyView = emptyView;
-        return this;
-    }
-
-    /**
-     * 指定空白布局
-     *
-     * @param emptyViewResId emptyViewResId
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setEmptyView(int emptyViewResId) {
-        setEmptyView(mInflater.inflate(emptyViewResId, this, false));
-        return this;
-    }
-
-    /**
-     * 指定错误布局
-     *
-     * @param errorView errorView
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setErrorView(View errorView) {
-        this.mErrorView = errorView;
-        return this;
-    }
-
-    /**
-     * 指定错误布局
-     *
-     * @param errorViewResId errorViewResId
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout setErrorView(int errorViewResId) {
-        setErrorView(mInflater.inflate(errorViewResId, this, false));
-        return this;
-    }
-
-    public MultipleStatusLayout include(View contentView) {
-        this.mContentView = contentView;
-        if (null == mContentView)
-            throw new NullPointerException("include contentView error : contentView == null");
-        ViewGroup contentParent = (ViewGroup) mContentView.getParent();
-        if (contentParent != null) {
-            contentParent.removeView(mContentView);
-            addView(mContentView, mContentView.getLayoutParams());//添加
-            contentParent.addView(this);
-        }
-        return this;
-    }
-
-    /**
-     * 指定要包裹的正文布局id
-     *
-     * @param contentId contentId
-     * @return MultipleStatusLayout
-     */
-    public MultipleStatusLayout include(int contentId) {
-        if (context instanceof Activity) include(((Activity) context).findViewById(contentId));
-        return this;
-    }
 
     /**
      * 显示loading
@@ -155,7 +49,8 @@ public class MultipleStatusLayout extends RelativeLayout {
         if (mViewState == VIEW_STATE_LOADING) return this;//已经显示 拒绝再次执行
         mViewState = VIEW_STATE_LOADING;
         if (mLoadingView == null) return this;
-        if (!contain(mLoadingView)) addView(mLoadingView, mLoadingView.getLayoutParams());
+        if (!contain(mLoadingView))
+            container.addView(mLoadingView, mLoadingView.getLayoutParams());
         showByType();
         return this;
     }
@@ -169,7 +64,7 @@ public class MultipleStatusLayout extends RelativeLayout {
         if (mViewState == VIEW_STATE_ERROR) return this;//已经显示 拒绝再次执行
         mViewState = VIEW_STATE_ERROR;
         if (mErrorView == null) return this;
-        if (!contain(mErrorView)) addView(mErrorView, mErrorView.getLayoutParams());
+        if (!contain(mErrorView)) container.addView(mErrorView, mErrorView.getLayoutParams());
         showByType();
         return this;
     }
@@ -183,7 +78,7 @@ public class MultipleStatusLayout extends RelativeLayout {
         if (mViewState == VIEW_STATE_EMPTY) return this;//已经显示 拒绝再次执行
         mViewState = VIEW_STATE_EMPTY;
         if (mEmptyView == null) return this;
-        if (!contain(mEmptyView)) addView(mEmptyView, mEmptyView.getLayoutParams());
+        if (!contain(mEmptyView)) container.addView(mEmptyView, mEmptyView.getLayoutParams());
         showByType();
         return this;
     }
@@ -209,10 +104,10 @@ public class MultipleStatusLayout extends RelativeLayout {
      * @return boolean
      */
     private boolean contain(View view) {
-        int childCount = getChildCount();
+        int childCount = container.getChildCount();
         if (childCount <= 0) return false;
         for (int i = 0; i < childCount; i++) {
-            View v = getChildAt(i);
+            View v = container.getChildAt(i);
             //如果存在 则返回true
             if (v == view) return true;
         }
@@ -232,4 +127,133 @@ public class MultipleStatusLayout extends RelativeLayout {
         if (mLoadingView != null)
             mLoadingView.setVisibility(mViewState == VIEW_STATE_LOADING ? View.VISIBLE : View.GONE);
     }
+
+    public static class Builder {
+        private LayoutInflater mInflater;
+        //实际的页面内容
+        public View mContentView;
+        //加载页面
+        public View mLoadingView;
+        //错误页面
+        public View mErrorView;
+        //空白页面
+        public View mEmptyView;
+        //上下文
+        private Context context;
+        //父容器
+        public ViewGroup container;
+
+        /**
+         * 构造
+         *
+         * @param context 上下文- activity
+         * @return Builder
+         */
+        public Builder(Context context) {
+            this.context = context;
+            container = new FrameLayout(context);
+            mInflater = LayoutInflater.from(context);
+        }
+
+        /**
+         * 指定loading布局
+         *
+         * @param loadingView loadingView
+         * @return Builder
+         */
+        public Builder setLoadingView(View loadingView) {
+            this.mLoadingView = loadingView;
+            return this;
+        }
+
+        /**
+         * 指定loading布局
+         *
+         * @param loadingViewResId loadingViewResId
+         * @return Builder
+         */
+        public Builder setLoadingView(int loadingViewResId) {
+            setLoadingView(mInflater.inflate(loadingViewResId, container, false));
+            return this;
+        }
+
+        /**
+         * 指定空白布局
+         *
+         * @param emptyView emptyView
+         * @return Builder
+         */
+        public Builder setEmptyView(View emptyView) {
+            this.mEmptyView = emptyView;
+            return this;
+        }
+
+        /**
+         * 指定空白布局
+         *
+         * @param emptyViewResId emptyViewResId
+         * @return Builder
+         */
+        public Builder setEmptyView(int emptyViewResId) {
+            setEmptyView(mInflater.inflate(emptyViewResId, container, false));
+            return this;
+        }
+
+        /**
+         * 指定错误布局
+         *
+         * @param errorView errorView
+         * @return Builder
+         */
+        public Builder setErrorView(View errorView) {
+            this.mErrorView = errorView;
+            return this;
+        }
+
+        /**
+         * 指定错误布局
+         *
+         * @param errorViewResId errorViewResId
+         * @return Builder
+         */
+        public Builder setErrorView(int errorViewResId) {
+            setErrorView(mInflater.inflate(errorViewResId, container, false));
+            return this;
+        }
+
+        /**
+         * 指定要包裹的正文布局
+         *
+         * @param contentView
+         * @return Builder
+         */
+        public Builder include(View contentView) {
+            this.mContentView = contentView;
+            if (null == mContentView)
+                throw new NullPointerException("include contentView error : contentView == null");
+            ViewGroup contentParent = (ViewGroup) mContentView.getParent();
+            if (contentParent != null) {
+                contentParent.removeView(mContentView);
+                container.addView(mContentView, mContentView.getLayoutParams());//添加
+                contentParent.addView(container, contentParent.getLayoutParams());
+            }
+            return this;
+        }
+
+        /**
+         * 指定要包裹的正文布局id
+         *
+         * @param contentId contentId
+         * @return Builder
+         */
+        public Builder include(int contentId) {
+            if (context instanceof Activity) include(((Activity) context).findViewById(contentId));
+            return this;
+        }
+
+        public MultipleStatusLayout build() {
+            return new MultipleStatusLayout(this);
+        }
+    }
+
 }
